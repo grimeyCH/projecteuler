@@ -24,7 +24,18 @@ years = range(1901,2001)
 
 def count_mondays():
     starting_day = predict_1_jan_1901()
-    
+    sundays = 0
+    print(starting_day)
+    for year in years:
+        if is_leap_year(year):
+            this_year = leap_years
+        else:
+            this_year = normal_years
+        for month in this_year:
+            if (starting_day + month) % 7 == 0:
+                sundays += 1
+            starting_day = (starting_day + month) % 7
+    print('#sundays: ', sundays)
 
 def is_leap_year(year):
     if year % 400 == 0:
@@ -41,10 +52,7 @@ def predict_1_jan_1901():
     else:
         year = normal_years
     day = sum(year) % 7
-    print(year, sum(year))
-    print(days_written[365%7])
-    print(days_written[(day+1)%7])
-    return days_written[(day+1)%7]
+    return (day+1)%7
     
 
 if __name__ == '__main__':
