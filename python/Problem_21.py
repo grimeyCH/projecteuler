@@ -10,5 +10,13 @@ Evaluate the sum of all the amicable numbers under 10000.
 
 '''
 
+def count_amicable_numbers():
+    numbers_and_divisor_sums = dict((x, get_divisors(x)) for x in range(0, 10001))
+    print(sum([number for number, divisor_sum in numbers_and_divisor_sums.iteritems() if (number == numbers_and_divisor_sums.get(divisor_sum) and number != numbers_and_divisor_sums.get(number))]))
+
+def get_divisors(number):
+    limit = number / 2 + 1
+    return sum([div_Test for div_Test in range(1,limit) if (number % div_Test) == 0])
+
 if __name__ == '__main__':
-    pass
+    count_amicable_numbers()
